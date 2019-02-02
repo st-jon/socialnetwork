@@ -6,8 +6,8 @@ import Login from './Login'
 export default function Welcome() {
     return (
         <div className='welcome'>
-            <h1 className="title">ZombieLand</h1>   
-            <div className="title">Keep out ! Deads inside !</div>
+            <h1 className="title">Zombie</h1>   
+            <div className="title">Keep close ! Deads inside !</div>
             <img className='logo' src="/assets/zombie.jpg" />
             <HashRouter>
                 <div>

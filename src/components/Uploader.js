@@ -19,20 +19,21 @@ export default class Uploader extends React.Component {
         axios.post('/upload', formData)
             .then(res => {
                 this.props.showPic(res.data.rows[0]['profil_pic'])
+                this.props.showUploader()
             })
             .catch(err => console.log(err.message))
     }
 
     render() {
         return (
-        <div className="uploader" onClick={this.props.close}>
-            <div className="modal">
-                <p className="modal__title">Change your profil picture</p>
-                <input id="file__input" className="modal__input" type="file"/>
-                <button className="btn__upload" onClick={this.upload}>UPLOAD</button>
-            </div>
-        </div>
-        )
-        
+            <div className="uploader__container">
+                <div className="uploader" onClick={this.props.showUploader}></div>
+                    <div className="modal">
+                        <p className="modal__title">Change your profil picture</p>
+                        <input id="file__input" className="modal__input" type="file"/>
+                        <button className="btn__upload" onClick={this.upload}>UPLOAD</button>
+                    </div>   
+            </div>  
+        )  
     }
 }
