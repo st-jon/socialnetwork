@@ -11,7 +11,9 @@ export default class BioEditor extends React.Component {
         this.handleChange = this.handleChange.bind(this)
         this.submit = this.submit.bind(this)
         this.showEditor = this.showEditor.bind(this)
+        this.handleKeyPress = this.handleKeyPress.bind(this)
     }
+
     componentWillReceiveProps(nextProps) {
         this.setState({bio: nextProps.bio})
     }
@@ -20,8 +22,7 @@ export default class BioEditor extends React.Component {
         this.bio = e.target.value
     }
 
-    submit(e) {
-        e.preventDefault()
+    submit() {
         axios.post('/edit/bio', {
             bio: this.bio
         })
@@ -40,9 +41,15 @@ export default class BioEditor extends React.Component {
         })
     }
 
+    handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.submit()
+        }
+    }
+
     render() {
         return ( 
-            <div className="bio__container">
+            <div onKeyPress={this.handleKeyPress} className="bio__container">
 
 
                 {this.props.bio && !this.state.showEditBio &&
@@ -53,12 +60,12 @@ export default class BioEditor extends React.Component {
                 }
 
                 {!this.state.showEditBio && !this.props.bio &&
-                    <div onClick={this.showEditor}>add your bio now</div>
+                    <div className="add__bio" onClick={this.showEditor}>add your bio now</div>
                 }
 
                 {this.state.showEditBio && 
                     <div className="bio__editor">
-                        <textarea className="input__bio" defaultValue={this.state.bio} type="text" name="bio" rows="5" cols="25" onChange={this.handleChange} autoComplete="off" placeholder="let us know more about you" autoFocus/>
+                        <textarea className="input__bio" defaultValue={this.state.bio} type="text" name="bio" rows="5" cols="38" onChange={this.handleChange} autoComplete="off" placeholder="let us know more about you" autoFocus/>
                         <button className="btn__bio" onClick={this.submit}>SAVE</button>
                     </div>
                 }

@@ -2,6 +2,7 @@ import React from 'react'
 import axios from '../axios'
 
 import ProfilePic from './ProfilePic'
+import FriendButton from './FriendButton'
 
 export default class OtherProfile extends React.Component {
     constructor(props) {
@@ -33,18 +34,17 @@ export default class OtherProfile extends React.Component {
     render() {
         return (
             <div className="profile__container">
-                <ProfilePic 
-                    picture={this.state.profilePic}
-                />
+                <div className="profilePic__container">
+                    <ProfilePic 
+                        picture={this.state.profilePic}
+                    />
+                    <FriendButton  otherUserID={this.props.match.params.id}/>
+                </div>
                 <div className="profil__info">
                     <div className="profile__name">{this.state.firstName}</div>
-                    <div className="bio">{this.state.bio}</div>
-                </div>           
+                    <div className="bio">{this.state.bio}</div>     
+                </div>  
             </div>
         )
     }
 }
-
-// if(data.redirectTo) {
-//     this.props.history.push(data.redirectTo)
-// }

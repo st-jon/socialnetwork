@@ -69,7 +69,8 @@ a {
 .header {
     display: flex;
     justify-content: space-between;
-    height: 12vh;
+    height: 70px;
+    padding: 5px;
     width: 100vw;
     color: white;
     border-bottom: 1px solid rgb(88, 88, 88);
@@ -84,14 +85,14 @@ a {
 /* PROFILE PIC */
 
 .logo__tiny {
-    height: 100%;
+    height: 75px;
     opacity: .7;
     width: auto;
 }
 
 .profile__pic {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
 }
@@ -105,9 +106,11 @@ a {
 }
 
 .default__profilPic {
-    height: 60%;
+    height: 70px;
     width: auto;
-    fill: rgb(163, 163, 163);
+    border-radius: 50%;
+    border: 1px solid  rgb(202, 202, 202);
+    fill: rgb(202, 202, 202);
     cursor: pointer;
 }
 
@@ -153,7 +156,9 @@ a {
     margin: 20px;
     color: #FFF;
     font-size: 3rem;
-    font-family: "violence"
+    font-family: "violence";
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #file__input {
@@ -192,10 +197,10 @@ a {
 .profile__container {
     display: flex;
     justify-content: flex-start;
-    border: 1px solid rgb(88, 88, 88);
-    height: 30vh;
+    /* border: 1px solid rgb(88, 88, 88); */
+    height: 40vh;
     min-width: 450px;
-    margin: 20px 20px;
+    margin: 5vh 2vw;
 }
 
 .profile__container img,
@@ -203,21 +208,29 @@ a {
     height: 200px;
     width: 200px;
     margin: 0 20px;
-    object-fit: cover;
+}
+
+.profilePic__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    /* height: 30vh; */
 }
 
 .profil__info {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    height: 30vh;
+    height: 40vh;
     margin-top: 5vh;
+    margin-left: 3vw;
 }
  
 .profile__name {
     margin: 5vh 0;
     font-family: "violence";
-    font-size: 1.4rem;
+    font-size: 2rem;
     letter-spacing: .2rem;
     color: rgb(185, 0, 0);
     margin-top: 10px;
@@ -232,6 +245,14 @@ a {
 .bio__editor {
     display: flex;
     flex-direction: column;
+}
+
+.add__bio {
+    cursor: pointer; 
+}
+
+.add__bio:hover {
+    text-decoration: underline;
 }
 
 .btn__bio {
@@ -259,6 +280,31 @@ a {
     margin-bottom: -20px;
 }
 
+/* FRIEND BUTTON */
+
+.btn__friend__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    position: relative;
+}
+
+.btn__friend {
+    background: rgb(185, 0, 0);
+    margin-top: 20px;
+    padding: 0 10px;
+    padding-top: 5px;
+    width: 140px;
+    border-radius: 10px;
+    font-family: "violence";
+    color: #FFF;
+    font-size: 1.4rem;
+    text-align: center;
+    letter-spacing: .1rem;
+    cursor: pointer;
+    z-index: 300;
+}
+ 
 /* REGISTRATION */
 
 .form__registration {
@@ -361,14 +407,17 @@ a {
 /* BLOOD TEST */
 
 
-/* .blood {
+.btn__friend__container:hover .blood {
+    position: absolute;
+    bottom: 0px;
+    right:  8px;
     z-index: 100;
-    top: 60px;
-    left: 90px;
-    width: 80px;
-    height: 15px;
-    background: #C33149;
+    width: 50px;
+    height: 8px;
+    background: rgb(185, 0, 0);
     border-radius: 0 0 100px 100px;
+    z-index: 270;
+    animation: 3s drippin3 ease forwards;
 }
 
 .blood:before,
@@ -377,60 +426,80 @@ a {
     content: '';
 }
 
-.blood:before {
-    top: 0;
-    left: 15px;
+.btn__friend__container:hover .blood:before {
+    bottom: 0px;
+    right: 24px;
     width: 10px;
-    height: 24px;
-    background: #C33149;
+    height: 10px;
+    background: rgb(185, 0, 0);
     border-radius: 0 0 100px 100px;
-    animation: 4s drippin ease;
+    z-index: 200;
+    animation: 3s drippin ease forwards;
 }
 
-.blood:after {
-    top: -10px;
-    left: 26px;
-    width: 13px;
-    height: 50px;
-    background: #C33149;
+.btn__friend__container:hover .blood:after {
+    bottom: 0px;
+    right: 10px;
+    width: 10px;
+    height: 23px;
+    background: rgb(185, 0, 0);
     border-radius: 0 0 100px 100px;
-    animation: 4s drippin ease;
+    z-index: 200;
+    animation: 3s drippin2 ease forwards;
 }
  
-  
-.drip {
-    width: 3px;
-    height: 8px;
-    background: #C33149;
-    top: 42px;
-    left: 112px;
-    border-radius: 0 0 100% 100%;
-}
-  
-.shine {
-    z-index: 1000;
-    top: 14px;
-    left: 17px;
-    width: 2px;
-    height: 7px;
-    background: #FFF - 30;
-    border-radius: 100px;
-    animation: 4s drippin ease;
+.btn__friend__container:hover .shine {
+    position: absolute;
+    z-index: 250;
+    bottom: 0px;
+    right:  8px;
+    width: 0px;
+    height: 0px;
 }
 
-.shine:before {
+.shine:before,
+.shine:after {
     position: absolute;
     content: '';
-    top: 9px;
-    left: 11px;
-    width: 2px;
-    height: 10px;
-    background: #FFF - 20;
-    border-radius: 100px;
 }
-  
+
+.btn__friend__container:hover .shine:after {
+    position: absolute;
+    z-index: 250;
+    bottom: 4px;
+    right: 4px;
+    width: 2px;
+    height: 4px;
+    background: #FFF;
+    border-radius: 100px;
+    z-index: 259;
+    animation: 3s drippin2 ease forwards;
+} 
+
+.btn__friend__container:hover .shine:before {
+    bottom: 4px;
+    right: 18px;
+    width: 2px;
+    height: 4px;
+    background: #FFF;
+    border-radius: 100px;
+    animation: 3s drippin ease forwards;
+}  
+
 @keyframes drippin {
     100% {
       transform: translateY(10px);
     }
-} */
+} 
+
+@keyframes drippin2 {
+    100% {
+      transform: translateY(20px);
+    }
+} 
+
+@keyframes drippin3 {
+    100% {
+      transform: translateY(3px);
+    }
+} 

@@ -77,7 +77,7 @@ export default class App extends React.Component {
                             exact path="/"
                             render={() => (
                                 <Profile
-                                    name={`${this.state.firstName} ${this.state.lastName}`} 
+                                    name={this.state.firstName} 
                                     uploader={this.showUploader}
                                     picture={this.state.profilePic}
                                     bio={this.state.bio}
