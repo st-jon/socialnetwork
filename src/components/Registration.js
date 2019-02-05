@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 
 export default class Registration extends React.Component {
+
     constructor(props) {
         super(props)
         this.state = {
@@ -11,10 +12,13 @@ export default class Registration extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this)
         this.submit = this.submit.bind(this)
+        this.handleKeyPress = this.handleKeyPress.bind(this)
     }
+
     handleChange(e) {
         this[e.target.name] = e.target.value
     }
+
     submit() {
         axios.post('/register', {
             firstName: this.firstName,
@@ -31,9 +35,16 @@ export default class Registration extends React.Component {
             }
         })
     }
+
+    handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.submit()
+        }
+    }
+
     render() {
         return (
-            <div className="form__registration">
+            <div onKeyPress={this.handleKeyPress} className="form__registration">
                 {this.state.error && <div className="error">Ooops!</div>}
                 <input className="input__registration" type="text" name="firstName" onChange={this.handleChange} autoComplete="off" placeholder="first name" autoFocus/>
                 <input className="input__registration" type="text" name="lastName" onChange={this.handleChange} autoComplete="off" placeholder="last name" />

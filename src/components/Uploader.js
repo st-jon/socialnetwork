@@ -24,6 +24,26 @@ export default class Uploader extends React.Component {
             .catch(err => console.log(err.message))
     }
 
+    componentDidMount() {
+        let input = document.getElementById('file__input')
+        let fakeInput = document.getElementById('file__input__fake')
+        
+
+        fakeInput.addEventListener('click', function(){
+            input.click()
+        })
+
+        input.addEventListener('change', function() {
+            let file = input.value.split("\\")
+            let fileName = file[file.length-1]
+            if (fileName.length > 0) {
+                fakeInput.innerHTML = `choosed file: ${fileName}`
+            } else if (fileName === "") {
+                fakeInput.innerHTML = 'choose a file'
+            }  
+        })
+    }
+
     render() {
         return (
             <div className="uploader__container">
@@ -31,6 +51,7 @@ export default class Uploader extends React.Component {
                     <div className="modal">
                         <p className="modal__title">Change your profil picture</p>
                         <input id="file__input" className="modal__input" type="file"/>
+                        <span title="choose a file to upload" id="file__input__fake">choose a file</span>
                         <button className="btn__upload" onClick={this.upload}>UPLOAD</button>
                     </div>   
             </div>  

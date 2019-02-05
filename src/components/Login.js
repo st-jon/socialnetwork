@@ -8,10 +8,13 @@ export default class Login extends React.Component {
         this.state = {}
         this.handleChange = this.handleChange.bind(this)
         this.submit = this.submit.bind(this)
+        this.handleKeyPress = this.handleKeyPress.bind(this)
     }
+
     handleChange(e) {
         this[e.target.name] = e.target.value
     }
+
     submit() {
         axios.post('/login', {
             email: this.email,
@@ -28,9 +31,16 @@ export default class Login extends React.Component {
             }).
             catch(err => console.log(err.message))
     }
+
+    handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.submit()
+        }
+    }
+
     render() {
         return (
-            <div className="form__login">
+            <div onKeyPress={this.handleKeyPress} className="form__login">
                 {this.state.error && <div className="error">Ooops!</div>}
                 <input className="input__login" type="text" name="email" onChange={this.handleChange} autoComplete="off" placeholder="email" autoFocus />
                 <input className="input__login" type="password" name="password" onChange={this.handleChange} autoComplete="off" placeholder="password" />
