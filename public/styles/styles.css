@@ -97,22 +97,82 @@ a {
     align-items: center;
 }
 
-.user__profilPic {
+.header__status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 70px;
-    width: 70px;
+    margin-right: 20px;
+}
+
+.user__profilPic {
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
 }
 
+.user__profilPic:hover {
+    filter: brightness(0.6);
+}
+
 .default__profilPic {
-    height: 70px;
+    height: 40px;
     width: auto;
     border-radius: 50%;
     border: 1px solid  rgb(202, 202, 202);
     fill: rgb(202, 202, 202);
     cursor: pointer;
 }
+
+.arrow {
+    fill: #FFF;
+    height: 30px;
+    width: 30px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.arrow:hover {
+    filter: brightness(0.6);
+}
+
+.menu {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    right: 0;
+    top: 80px;
+    width: 10vw;
+    background: #3B3B3B;
+    border: 1px solid rgb(88, 88, 88);
+    border-bottom: none;
+    box-shadow: -7px 7px 18px -5px rgba(0,0,0,0.2);
+}
+
+.menu-item {
+    font-size: .8rem;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(88, 88, 88);
+    font-family: 'violence';
+    font-size: 1.4rem;
+    letter-spacing: .2rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background: rgb(126, 126, 126);
+}
+
+.logout {
+    
+}
+
+
 
 /* UPLOADER */
 
@@ -196,18 +256,20 @@ a {
 
 .profile__container {
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    /* border: 1px solid rgb(88, 88, 88); */
-    height: 40vh;
-    min-width: 450px;
-    margin: 5vh 2vw;
+    height: 89vh;
+    max-width: 30vw;
+    border-right: 1px solid rgb(88, 88, 88);
 }
 
 .profile__container img,
 .profile__container .default__profilPic {
+    align-self: center;
     height: 200px;
     width: 200px;
     margin: 0 20px;
+    margin-top: 3vh;
 }
 
 .profilePic__container {
@@ -215,25 +277,24 @@ a {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    /* height: 30vh; */
 }
 
 .profil__info {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
+    align-items: center;
     height: 40vh;
-    margin-top: 5vh;
-    margin-left: 3vw;
+    margin-top: 5vh; 
 }
  
 .profile__name {
-    margin: 5vh 0;
+    margin-top: 3vh;
     font-family: "violence";
     font-size: 2rem;
     letter-spacing: .2rem;
     color: rgb(185, 0, 0);
-    margin-top: 10px;
+    text-align: center;
 }
 
 /*  BIO  */
@@ -279,6 +340,7 @@ a {
     border: 1px solid rgb(88, 88, 88);
     margin-bottom: -20px;
 }
+
 
 /* FRIEND BUTTON */
 
@@ -410,12 +472,12 @@ a {
 .btn__friend__container:hover .blood {
     position: absolute;
     bottom: 0px;
-    right:  8px;
+    right:  6px;
     z-index: 100;
-    width: 50px;
-    height: 8px;
+    width: 45px;
+    height: 15px;
     background: rgb(185, 0, 0);
-    border-radius: 0 0 100px 100px;
+    border-radius:  50%;
     z-index: 270;
     animation: 3s drippin3 ease forwards;
 }
@@ -430,7 +492,7 @@ a {
     bottom: 0px;
     right: 24px;
     width: 10px;
-    height: 10px;
+    height: 15px;
     background: rgb(185, 0, 0);
     border-radius: 0 0 100px 100px;
     z-index: 200;
@@ -439,8 +501,8 @@ a {
 
 .btn__friend__container:hover .blood:after {
     bottom: 0px;
-    right: 10px;
-    width: 10px;
+    right: 8px;
+    width: 12px;
     height: 23px;
     background: rgb(185, 0, 0);
     border-radius: 0 0 100px 100px;
@@ -466,8 +528,8 @@ a {
 .btn__friend__container:hover .shine:after {
     position: absolute;
     z-index: 250;
-    bottom: 4px;
-    right: 4px;
+    bottom: 5px;
+    right: 2px;
     width: 2px;
     height: 4px;
     background: #FFF;
@@ -488,7 +550,7 @@ a {
 
 @keyframes drippin {
     100% {
-      transform: translateY(10px);
+      transform: translateY(13px);
     }
 } 
 
@@ -500,6 +562,6 @@ a {
 
 @keyframes drippin3 {
     100% {
-      transform: translateY(3px);
+      transform: translateY(5px);
     }
 } 

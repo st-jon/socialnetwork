@@ -7,7 +7,7 @@ export default function Welcome() {
     return (
         <div className='welcome'>
             <h1 className="title">ZOMBIE</h1>   
-            <div className="subtitle">Keep close ! Deads inside !</div>
+            <div className="subtitle">Don't open ! Dead inside !</div>
             <HashRouter>
                 <div>
                     <Route exact path="/" component={Registration} />

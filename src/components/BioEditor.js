@@ -65,7 +65,7 @@ export default class BioEditor extends React.Component {
 
                 {this.state.showEditBio && 
                     <div className="bio__editor">
-                        <textarea className="input__bio" defaultValue={this.state.bio} type="text" name="bio" rows="5" cols="38" onChange={this.handleChange} autoComplete="off" placeholder="let us know more about you" autoFocus/>
+                        <textarea className="input__bio" defaultValue={this.state.bio} type="text" name="bio" rows="5" cols="35" onChange={this.handleChange} autoComplete="off" placeholder="let us know more about you" autoFocus/>
                         <button className="btn__bio" onClick={this.submit}>SAVE</button>
                     </div>
                 }

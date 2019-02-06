@@ -38,11 +38,12 @@ export default class OtherProfile extends React.Component {
                     <ProfilePic 
                         picture={this.state.profilePic}
                     />
+                    <div className="profile__name">{this.state.firstName}</div>
                     <FriendButton  otherUserID={this.props.match.params.id}/>
                 </div>
                 <div className="profil__info">
-                    <div className="profile__name">{this.state.firstName}</div>
-                    <div className="bio">{this.state.bio}</div>     
+                    {this.state.bio && <div className="bio"><em>"{this.state.bio}"</em></div>} 
+                    {!this.state.bio && <div className="bio"><em>{this.state.firstName} hasn't written bio</em></div>}    
                 </div>  
             </div>
         )

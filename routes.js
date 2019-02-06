@@ -137,6 +137,12 @@ app.post('/login', (req, res) => {
         })
 })
 
+// LOGOUT
+app.get('/logout', (req, res) => {
+    req.session.userID = null
+    res.redirect('/welcome#/')
+})
+
 // ALL OTHER ROUTES
 app.get('*', function(req, res) {
     if (!req.session.userID) {
