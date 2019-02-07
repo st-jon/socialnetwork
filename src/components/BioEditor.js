@@ -24,7 +24,7 @@ export default class BioEditor extends React.Component {
 
     submit() {
         axios.post('/edit/bio', {
-            bio: this.bio ? this.bio: this.state.bio
+            bio: this.bio ? this.bio : this.state.bio
         })
         .then((res) => {
             this.props.showBio(res.data.rows[0]['bio'])
