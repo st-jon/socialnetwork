@@ -86,7 +86,6 @@ a {
 
 .logo__tiny {
     height: 75px;
-    opacity: .7;
     width: auto;
 }
 
@@ -109,6 +108,7 @@ a {
     height: 40px;
     width: 40px;
     border-radius: 50%;
+    border: 1px solid  #FFF;
     object-fit: cover;
     cursor: pointer;
 }
@@ -121,20 +121,20 @@ a {
     height: 40px;
     width: auto;
     border-radius: 50%;
-    border: 1px solid  rgb(202, 202, 202);
-    fill: rgb(202, 202, 202);
+    border: 1px solid  #FFF;
+    fill: #FFF;
     cursor: pointer;
 }
 
-.arrow {
+.menu__icon {
     fill: #FFF;
-    height: 30px;
-    width: 30px;
+    height: 38px;
+    width: 38px;
     margin-left: 20px;
     cursor: pointer;
 }
 
-.arrow:hover {
+.menu__icon:hover {
     filter: brightness(0.6);
 }
 
@@ -150,6 +150,7 @@ a {
     border: 1px solid rgb(88, 88, 88);
     border-bottom: none;
     box-shadow: -7px 7px 18px -5px rgba(0,0,0,0.2);
+    z-index: 300;
 }
 
 .menu-item {
@@ -157,22 +158,18 @@ a {
     width: 100%;
     padding: 10px 0;
     border-bottom: 1px solid rgb(88, 88, 88);
+    background: #3B3B3B;
     font-family: 'violence';
     font-size: 1.4rem;
     letter-spacing: .2rem;
     text-align: center;
     cursor: pointer;
+    z-index: 300;
 }
 
 .menu-item:hover {
-    background: rgb(126, 126, 126);
+    background: rgb(185, 0, 0);
 }
-
-.logout {
-    
-}
-
-
 
 /* UPLOADER */
 
@@ -306,6 +303,7 @@ a {
 .bio__editor {
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 .add__bio {
@@ -469,7 +467,7 @@ a {
 /* BLOOD TEST */
 
 
-.btn__friend__container:hover .blood {
+.animated:hover .blood {
     position: absolute;
     bottom: 0px;
     right:  6px;
@@ -488,7 +486,7 @@ a {
     content: '';
 }
 
-.btn__friend__container:hover .blood:before {
+.animated:hover .blood:before {
     bottom: 0px;
     right: 24px;
     width: 10px;
@@ -499,7 +497,7 @@ a {
     animation: 3s drippin ease forwards;
 }
 
-.btn__friend__container:hover .blood:after {
+.animated:hover .blood:after {
     bottom: 0px;
     right: 8px;
     width: 12px;
@@ -510,7 +508,7 @@ a {
     animation: 3s drippin2 ease forwards;
 }
  
-.btn__friend__container:hover .shine {
+.animated:hover .shine {
     position: absolute;
     z-index: 250;
     bottom: 0px;
@@ -525,7 +523,7 @@ a {
     content: '';
 }
 
-.btn__friend__container:hover .shine:after {
+.animated:hover .shine:after {
     position: absolute;
     z-index: 250;
     bottom: 5px;
@@ -538,7 +536,7 @@ a {
     animation: 3s drippin2 ease forwards;
 } 
 
-.btn__friend__container:hover .shine:before {
+.animated:hover .shine:before {
     bottom: 4px;
     right: 18px;
     width: 2px;

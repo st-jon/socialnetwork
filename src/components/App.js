@@ -81,14 +81,20 @@ export default class App extends React.Component {
                                 picture={this.state.profilePic}
                                 uploader={this.showUploader}
                             />
-                            <svg className="arrow" onClick={this.showMenu} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="-489 491 100 100" xmlSpace="preserve">
+                            <svg className="menu__icon" onClick={this.showMenu} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="-489 491 100 100" xmlSpace="preserve">
                                 <path d="M-394.1,582.8h-4.1v-50.5c0-55.1-81.6-55.1-81.6,0v50.5h-4.1c-4.1,0-4.1,0-4.1,4.1s0,4.1,4.1,4.1h8.2h26.5c0,0,0,0,0.1,0h4  v-18.4c0-6.1-8.2-6.1-20.4-30.6c6.1-6.1,12.2,8.2,16.3,8.2c0,0,2-2,2-4.1l-2-14.3l-4.1-8.2c-2-4.1,4.1-6.1,6.1-2l4.1,8.2l2,6.1h2  v-12.2l-2-12.2c0-4.1,6.1-4.1,6.1,0l2,12.2v12.2h2l2-12.2v-10.2c0-4.1,6.1-4.1,6.1,0v12.2l-2,10.2h2l4.1-6.1v-8.2  c0-4.1,6.1-4.1,6.1,0v10.2l-4.1,14.3c-4.1,18.4-8.2,20.4-8.2,26.5V591h14.2c0.1,0,0.1,0,0.1,0h8.2h8.2c4.1,0,4.1,0,4.1-4.1  S-390,582.8-394.1,582.8z"/>
                             </svg>
                             {this.state.menuIsVisible && 
-                                <div className="menu">
-                                    <div className="menu-item">Friends</div>
-                                    <div onClick={this.logout} className="logout menu-item">Logout</div>
-                                </div> 
+                                <div>
+                                    <div className="menu animated">
+                                        <div className="menu-item">Friends</div>
+                                        <div onClick={this.logout} className="logout menu-item">Logout</div>
+                                        <div className="blood">
+                                            <div className="shine"></div>
+                                        </div>
+                                    </div> 
+                                    
+                                </div>
                             }
                         </div>   
                     </div>

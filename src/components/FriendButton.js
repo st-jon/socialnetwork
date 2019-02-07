@@ -57,7 +57,7 @@ export default class FriendButton extends React.Component {
 
     render() {
         return (
-            <div className="btn__friend__container">
+            <div className="btn__friend__container animated">
                 <div className="btn__friend" onClick={this.updateFriendStatus}>{this.state.text}</div>
                 <div className="blood">
                     <div className="shine"></div>
