@@ -5,7 +5,7 @@ const uidSafe = require('uid-safe')
 
 const app = express()
 
-const {addUser, getUserByEmail, getUserById, addProfilePic, addBio, getFriendStatus, addFriendRequest, acceptFriendRequest, cancelFriendRequest} = require('./db/db')
+const {addUser, getUserByEmail, getUserById, addProfilePic, addBio, getFriendStatus, addFriendRequest, acceptFriendRequest, cancelFriendRequest, getFriendsAndWanabee} = require('./db/db')
 const {hashPassword, checkPassword} = require('./utils/crypt')
 const {upload} = require('./s3')
 const {s3Url} = require('./config') 
@@ -98,6 +98,13 @@ app.post('/status/update', (req, res) => {
             .then(data => res.json(data))
             .catch(err => console.log(err.message))
     }
+})
+
+// GET FRIENDS AND WANABEE
+app.get('/getfriends', (req, res) => {
+    getFriendsAndWanabee(req.session.userID)
+        .then(data => res.json({data}))
+        .catch(err => console.log(err.message))
 })
 
 // SEND REGISTRATION

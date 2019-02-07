@@ -7,13 +7,13 @@ import ProfilePic from './ProfilePic'
 import Uploader from './Uploader'
 import Profile from './Profile'
 import OtherProfile from './OtherProfile'
-
-
+import Friends from './Friends'
 
 export default class App extends React.Component {
     constructor() {
         super()
         this.state = {
+            friendsIsVisible: false,
             menuIsVisible: false,
             uploaderIsVisible: false,
             firstName: '',
@@ -74,10 +74,10 @@ export default class App extends React.Component {
                         <Link className="link" to="/">
                             <img className="logo__tiny" title="Home" src="/assets/zombie-tiny.jpg" />
                         </Link>
-                        <div className="header__status">
-                            
+                        <div className="header__status">  
                             <ProfilePic 
                                 name={this.state.firstName}
+                                last= {this.state.lastName}
                                 picture={this.state.profilePic}
                                 uploader={this.showUploader}
                             />
@@ -87,7 +87,9 @@ export default class App extends React.Component {
                             {this.state.menuIsVisible && 
                                 <div>
                                     <div className="menu animated">
-                                        <div className="menu-item">Friends</div>
+                                        <Link to='/friends'>
+                                            <div className="menu-item">Friends</div>
+                                        </Link>
                                         <div onClick={this.logout} className="logout menu-item">Logout</div>
                                         <div className="blood">
                                             <div className="shine"></div>
@@ -104,6 +106,7 @@ export default class App extends React.Component {
                             render={() => (
                                 <Profile
                                     name={this.state.firstName} 
+                                    last= {this.state.lastName}
                                     uploader={this.showUploader}
                                     picture={this.state.profilePic}
                                     bio={this.state.bio}
@@ -111,15 +114,36 @@ export default class App extends React.Component {
                                 />
                             )}
                         />
-                        <Route  path="/user/:id" 
-                                render={props => (
-                                    <OtherProfile
+                        <Route  
+                            path="/user/:id" 
+                            render={props => (
+                                <OtherProfile
+                                    key={props.match.url}
+                                    match={props.match}
+                                    history={props.history}
+                                />
+                            )}
+                        />
+                        <Route  
+                            path='/friends'
+                            render={props => (
+                                <div className="profri__container">
+                                    <Profile
+                                        name={this.state.firstName} 
+                                        last= {this.state.lastName}
+                                        uploader={this.showUploader}
+                                        picture={this.state.profilePic}
+                                        bio={this.state.bio}
+                                        showBio={this.showBio}
+                                    />
+                                    <Friends 
                                         key={props.match.url}
                                         match={props.match}
-                                        history={props.history}
+                                        history={props.history} 
                                     />
-                                )}
-                        />  
+                                </div>
+                            )}
+                        /> 
                     </div>  
                     {this.state.uploaderIsVisible && <Uploader showPic={this.showProfilePic} showUploader={this.showUploader} />}
                 </div>    
@@ -128,13 +152,3 @@ export default class App extends React.Component {
         )
     }
 }
-
-
-
-// <Profile 
-//     name={`${this.state.firstName} ${this.state.lastName}`} 
-//     uploader={this.showUploader}
-//     picture={this.state.profilePic}
-//     bio={this.state.bio}
-//     showBio={this.showBio}
-// />

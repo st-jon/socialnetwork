@@ -82,6 +82,31 @@ a {
     width: 100vw;
 }
 
+.profri__container {
+    display: flex;
+    height: 89vh;
+    width: 100vw;
+}
+
+.friends__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 69vh;
+    width: 60vw;
+    padding: 10vh 5vw;
+    overflow: scroll;
+}
+
+.friend__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 20vw;
+    margin: 0 2vw;
+}
+
 /* PROFILE PIC */
 
 .logo__tiny {
@@ -118,13 +143,31 @@ a {
 }
 
 .default__profilPic {
+    display: flex;
+    justify-content: center;
     height: 40px;
-    width: auto;
+    width: 40px;
     border-radius: 50%;
     border: 1px solid  #FFF;
-    fill: #FFF;
+    /* fill: #FFF; */
+    background: #FFF;
+    color: #3B3B3B;
+    text-transform: uppercase;
+    font-family: "violence";
+    text-align: center;
+    font-size: 2.5rem;
     cursor: pointer;
 }
+
+.initial {
+    margin-top: 15%;
+}
+
+.default__profilPic:hover {
+    filter: brightness(0.6);
+    color: rgb(185, 0, 0);
+}
+
 
 .menu__icon {
     fill: #FFF;
@@ -263,6 +306,7 @@ a {
 .profile__container img,
 .profile__container .default__profilPic {
     align-self: center;
+    font-size: 12rem;
     height: 200px;
     width: 200px;
     margin: 0 20px;
@@ -339,7 +383,6 @@ a {
     margin-bottom: -20px;
 }
 
-
 /* FRIEND BUTTON */
 
 .btn__friend__container {
@@ -347,6 +390,7 @@ a {
     flex-direction: column;
     justify-content: right;
     position: relative;
+    width: 160px;
 }
 
 .btn__friend {
@@ -356,6 +400,7 @@ a {
     padding-top: 5px;
     width: 140px;
     border-radius: 10px;
+    border: none;
     font-family: "violence";
     color: #FFF;
     font-size: 1.4rem;
@@ -363,6 +408,33 @@ a {
     letter-spacing: .1rem;
     cursor: pointer;
     z-index: 300;
+}
+
+/*  FRIEND */
+
+.card__container {
+    display: flex;
+    width: 40vw;
+    height: 100px;
+    margin: 5vh 5vw;
+    /* border: 1px solid rgb(88, 88, 88); */
+}
+
+.card__container .user__profilPic,
+.card__container .default__profilPic{
+    height: 100px;
+    width: 100px;
+    align-self: center;
+    font-size: 6rem;
+}
+
+.friend__name {
+    align-self: flex-start;
+    font-family: "violence";
+    font-size: 1.6rem;
+    letter-spacing: .2rem;
+    color: rgb(185, 0, 0);
+    text-align: left;
 }
  
 /* REGISTRATION */

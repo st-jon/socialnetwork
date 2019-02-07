@@ -37,6 +37,8 @@ export default class OtherProfile extends React.Component {
                 <div className="profilePic__container">
                     <ProfilePic 
                         picture={this.state.profilePic}
+                        name={this.state.firstName}
+                        last={this.state.lastName}
                     />
                     <div className="profile__name">{this.state.firstName}</div>
                     <FriendButton  otherUserID={this.props.match.params.id}/>

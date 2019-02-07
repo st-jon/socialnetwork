@@ -24,21 +24,17 @@ export default class BioEditor extends React.Component {
 
     submit() {
         axios.post('/edit/bio', {
-            bio: this.bio ? this.bio : this.state.bio
+            bio: this.bio ? this.bio.trim() : this.state.bio.trim()
         })
         .then((res) => {
             this.props.showBio(res.data.rows[0]['bio'])
-            this.setState({
-                showEditBio: false
-            })
+            this.setState({showEditBio: false})
         })
         .catch(err => console.log(err.message))
     }
 
     showEditor() {
-        this.setState({
-            showEditBio: true
-        })
+        this.setState({showEditBio: true})
     }
 
     handleKeyPress(e) {
@@ -50,19 +46,15 @@ export default class BioEditor extends React.Component {
     render() {
         return ( 
             <div onKeyPress={this.handleKeyPress} className="bio__container">
-
-
                 {this.props.bio && !this.state.showEditBio &&
                     <div className="bio__editor">
                         <em>"{this.props.bio}"</em>
                         <button className="btn__bio" onClick={this.showEditor}>EDIT</button>
                     </div>
                 }
-
                 {!this.state.showEditBio && !this.props.bio &&
                     <div className="add__bio" onClick={this.showEditor}>add your bio now</div>
                 }
-
                 {this.state.showEditBio && 
                     <div className="bio__editor">
                         <textarea className="input__bio" defaultValue={this.state.bio} type="text" name="bio" rows="5" cols="35" onChange={this.handleChange} autoComplete="off" placeholder="let us know more about you" autoFocus/>

@@ -6,6 +6,8 @@ import BioEditor from './BioEditor'
 const Profile = (props) => (
     <div className="profile__container">
         <ProfilePic 
+            name={props.name}
+            last={props.last}
             picture={props.picture}
             uploader={props.uploader}
         />

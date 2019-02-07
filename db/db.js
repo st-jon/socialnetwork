@@ -66,32 +66,49 @@ module.exports.getFriendStatus = (senderID, recipientID) => {
         SELECT * FROM friends
         WHERE (sender_id = $1 AND recipient_id = $2)
         OR (sender_id = $2 AND recipient_id = $1)`,
-        [senderID, recipientID])
+        [senderID, recipientID]
+    )
 }
 
 // ADD FRIENDS REQUEST
-module.exports.addFriendRequest = (senderID, RecipientID) => {
+module.exports.addFriendRequest = (senderID, recipientID) => {
     return db.query(`
         INSERT INTO friends (sender_id, recipient_id)
         VALUES ($1, $2)
         RETURNING *`,
-        [senderID, RecipientID])
+        [senderID, recipientID]
+    )
 }
 
 // ACCEPT FRIENDS REQUEST
-module.exports.acceptFriendRequest = (senderID, RecipientID) => {
+module.exports.acceptFriendRequest = (senderID, recipientID) => {
     return db.query(`
         UPDATE friends
         SET accepted = true
         WHERE sender_id = $1 AND recipient_id = $2`, 
-        [senderID, RecipientID])
+        [senderID, recipientID]
+    )
 }
 
 // DELETE FRIENDSHIP
-module.exports.cancelFriendRequest = (senderID, RecipientID) => {
+module.exports.cancelFriendRequest = (senderID, recipientID) => {
     return db.query(`
         DELETE FROM friends
         WHERE (sender_id = $1 AND recipient_id = $2)
         OR (sender_id = $2 AND recipient_id = $1)`, 
-    [senderID, RecipientID])
+        [senderID, recipientID]
+    )
+}
+
+// GET ALL FRIENDS AND FRIENDS REQUEST
+module.exports.getFriendsAndWanabee = (recipientID) => {
+    return db.query(`
+        SELECT users.id, first_name, last_name, profil_pic, accepted
+        FROM friends
+        JOIN users
+        ON (accepted = false AND recipient_id = $1 AND sender_id = users.id)
+        OR (accepted = true AND recipient_id = $1 AND sender_id = users.id)
+        OR (accepted = true AND sender_id = $1 AND recipient_id = users.id)`,
+        [recipientID]
+    )
 }
