@@ -14,10 +14,7 @@ export default class FriendButton extends React.Component {
     componentDidMount() {
         axios.get(`/status/${this.props.otherUserID}`)
             .then(res => {
-                if(res.data.rows.length < 1) {
-                    this.setState({text: 'Add Friend'})
-                }
-                else if (res.data.rows[0].accepted === false && res.data.rows[0]['sender_id'] == this.props.otherUserID) {
+                if (res.data.rows[0].accepted === false && res.data.rows[0]['sender_id'] == this.props.otherUserID) {
                     this.setState({text: 'Accept Invitation'})
                 }
                 else if (res.data.rows[0].accepted === false && res.data.rows[0]['recipient_id'] == this.props.otherUserID) {

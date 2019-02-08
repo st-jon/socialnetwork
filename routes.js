@@ -5,8 +5,9 @@ const uidSafe = require('uid-safe')
 
 const app = express()
 
-const {addUser, getUserByEmail, getUserById, addProfilePic, addBio, getFriendStatus, addFriendRequest, acceptFriendRequest, cancelFriendRequest, getFriendsAndWanabee} = require('./db/db')
+const {addUser, getUserByEmail, getUserById, addProfilePic, addBio, getFriendStatus, addFriendRequest, acceptFriendRequest, cancelFriendRequest, getFriendsAndWanabee, searchFriendByName} = require('./db/db')
 const {hashPassword, checkPassword} = require('./utils/crypt')
+const {validateForm} = require('./utils/utils')
 const {upload} = require('./s3')
 const {s3Url} = require('./config') 
 
@@ -74,6 +75,13 @@ app.get('/api/user/:id', (req, res) => {
     } 
 })
 
+// SEARCH FRIENDS
+app.get('/search/:text', (req, res) => {
+    searchFriendByName(`${req.params.text}%`)
+        .then(data => res.json(data))
+        .catch(err => console.log(err.message))
+})
+
 // GET FRIEND STATUS
 app.get('/status/:id', (req, res) => {
     getFriendStatus(req.session.userID, req.params.id)
@@ -109,6 +117,18 @@ app.get('/getfriends', (req, res) => {
 
 // SEND REGISTRATION
 app.post('/register', (req, res) => {
+
+    let validation = validateForm(req.body)
+
+    if (validation) {
+        res.json({error: validation })
+        return
+    }
+    if (!req.body.password) {
+        res.json({error: 'Please provide a password' })
+        return
+    }
+
     hashPassword(req.body.password)
         .then(hash => {
             return addUser(req.body.firstName, req.body.lastName, req.body.email, hash);

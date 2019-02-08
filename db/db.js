@@ -112,3 +112,12 @@ module.exports.getFriendsAndWanabee = (recipientID) => {
         [recipientID]
     )
 }
+
+// SEARCH FOR FRIENDS
+module.exports.searchFriendByName = (text) => {
+    return db.query(`
+        SELECT first_name, last_name, id, profil_pic FROM users
+        WHERE first_name LIKE $1`,
+        [text]
+    )
+}

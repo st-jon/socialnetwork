@@ -7,7 +7,7 @@ import ProfilePic from './ProfilePic'
 
 class Friends extends React.Component {
     componentDidMount() {
-        this.props.dispatch(receiveFriends());
+        this.props.dispatch(receiveFriends())
     }
 
     render() {
@@ -15,59 +15,73 @@ class Friends extends React.Component {
         const { friends } = this.props
 
         if (!friends) {
-            return null;
+            return null
         }
         const oldFriends = friends.filter(item => item.accepted === true)
         const futurFriends = friends.filter(item => item.accepted === false)
 
         return (
             <div className='friends__container'>
-                {oldFriends.length > 0 && <div>You have {oldFriends.length} friends:</div>}
-                {oldFriends.map(friend => {
-                   return(
-                        <div className="card__container" key={friend.id}>
-                            <Link to={`/user/${friend.id}`}>
-                                <ProfilePic
-                                    picture={friend['profil_pic']} 
-                                    name={friend['first_name']}
-                                    last={friend['last_name']}
-                                />
-                            </Link>
-                            <div className="friend__info">
-                                <div className="friend__name">{friend['first_name']} {friend['last_name']}</div>
-                                <div className="btn__friend__container animated">
-                                    <button onClick={() => {this.props.dispatch(deleteFriend(friend.id))}} className="btn__friend">Delete Friend</button>
-                                    <div className="blood">
-                                        <div className="shine"></div>
-                                    </div>
-                                </div>  
-                            </div>
-                        </div>
-                    )
-                })}
-                {futurFriends.length > 0 && <div>You have {futurFriends.length} friend requests:</div>}
-                {futurFriends.map(friend => {
+                <div className="old">
+                    {oldFriends.length < 1 && futurFriends < 1 && <div className='friends__container'>
+                        <div>You have no friend yet... loser !</div>
+                    </div>}
+                    {oldFriends.length > 0 && <div>You have {oldFriends.length} friends:</div>}
+                    {oldFriends.map(friend => {
                     return(
-                        <div className="card__container" key={friend.id}>
-                            <Link to={`/user/${friend.id}`}>
-                                <ProfilePic
-                                    picture={friend['profil_pic']} 
-                                    name={friend['first_name']}
-                                    last={friend['last_name']}
-                                />
-                            </Link>
-                            <div className="friend__info">
-                                <div className="friend__name">{friend['first_name']} {friend['last_name']}</div>
-                                <div className="btn__friend__container animated">
-                                    <button onClick={() => {this.props.dispatch(addFriend(friend.id))}} className="btn__friend">Accept Invitation</button>
-                                    <div className="blood">
-                                        <div className="shine"></div>
-                                    </div>
-                                </div>    
+                            <div className="card__container" key={friend.id}>
+                                <Link to={`/user/${friend.id}`}>
+                                    <ProfilePic
+                                        picture={friend['profil_pic']} 
+                                        name={friend['first_name']}
+                                        last={friend['last_name']}
+                                    />
+                                </Link>
+                                <div className="friend__info">
+                                    <div className="friend__name">{friend['first_name']} {friend['last_name']}</div>
+                                    <div className="btn__friend__container animated">
+                                        <button onClick={() => {this.props.dispatch(deleteFriend(friend.id))}} className="btn__friend">Delete Friend</button>
+                                        <div className="blood">
+                                            <div className="shine"></div>
+                                        </div>
+                                    </div>  
+                                </div>
                             </div>
-                        </div>
-                    )
-                 })}
+                        )
+                    })}
+                </div>
+
+                <div className="futur">
+                    {futurFriends.length > 0 && <div>You have {futurFriends.length} friend requests:</div>}
+                    {futurFriends.map(friend => {
+                        return(
+                            <div className="card__container futurfriend" key={friend.id}>
+                                <Link to={`/user/${friend.id}`}>
+                                    <ProfilePic
+                                        picture={friend['profil_pic']} 
+                                        name={friend['first_name']}
+                                        last={friend['last_name']}
+                                    />
+                                </Link>
+                                <div className="friend__info">
+                                    <div className="friend__name">{friend['first_name']} {friend['last_name']}</div>
+                                    <div className="btn__friend__container animated">
+                                        <button onClick={() => {this.props.dispatch(addFriend(friend.id))}} className="btn__friend">Accept Invitation</button>
+                                        <div className="blood">
+                                            <div className="shine"></div>
+                                        </div>
+                                    </div>
+                                    <div className="btn__friend__container animated">
+                                        <button onClick={() => {this.props.dispatch(deleteFriend(friend.id))}} className="btn__friend">Decline Invitation</button>
+                                        <div className="blood">
+                                            <div className="shine"></div>
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div> 
             </div>
         )
     }

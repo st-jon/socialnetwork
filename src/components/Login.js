@@ -45,7 +45,7 @@ export default class Login extends React.Component {
                 <input className="input__login" type="text" name="email" onChange={this.handleChange} autoComplete="off" placeholder="email" autoFocus />
                 <input className="input__login" type="password" name="password" onChange={this.handleChange} autoComplete="off" placeholder="password" />
                 <button className="btn__login" onClick={this.submit}>LOGIN</button>
-                <p>Not yet registered ? <Link className="link" to="/login">register</Link></p>
+                <p>Not yet registered ? <Link to="/login">register</Link></p>
             </div>
         )
     }
