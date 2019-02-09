@@ -11,6 +11,7 @@ export default class Search extends React.Component {
             searchedFriends: []
         }
         this.handleChange = this.handleChange.bind(this)
+        this.resetSearch = this.resetSearch.bind(this)
     }
 
     handleChange(e) {
@@ -24,16 +25,23 @@ export default class Search extends React.Component {
             .catch(err => console.log(err.message))
     }
 
+    resetSearch() {
+        this.setState({
+            searchedFriends: []
+        })
+        document.querySelector('.searchBar').value = ""
+    }
+
     render() {
         return (
             <div className="search__container">
                 <input type="text" name="searchbar" className="searchBar" onChange={this.handleChange} autoComplete="off" placeholder="Search Friends" autoFocus/>
-                <div className="result">
+                <div className="result__container">
                     {this.state.searchedFriends &&
                     this.state.searchedFriends.map(friend => {
                         return (
                             <Link to={`/user/${friend.id}`} key={friend.id}>
-                                <div className="result__container">
+                                <div onClick={this.resetSearch} className="result">
                                     <ProfilePic 
                                         picture={friend['profil_pic']}
                                         name={friend['first_name']}
