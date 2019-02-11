@@ -31,3 +31,24 @@ export const addFriend = async(id) => {
         id
     }
 }
+
+export const getOnlineUsers = (onlineUsers) => {
+    return {
+        type: 'GET_ONLINE_USERS',
+        onlineUsers
+    }
+}
+
+export const UpdateOnlineUsers = (newOnlineUsers) => {
+    return {
+        type: 'UPDATE_ONLINE_USERS',
+        newOnlineUsers
+    }
+}
+
+export const deleteOnlineUser = (id) => {
+    return {
+        type: 'DELETE_ONLINE_USER',
+        id
+    }
+}

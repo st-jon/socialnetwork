@@ -9,6 +9,7 @@ import Profile from './Profile'
 import OtherProfile from './OtherProfile'
 import Friends from './Friends'
 import Header from './Header'
+import OnlineUsersList from './OnlineUsersList'
 
 export default class App extends React.Component {
     constructor() {
@@ -64,6 +65,7 @@ export default class App extends React.Component {
                         picture={this.state.profilePic}
                         uploader={this.showUploader}
                     />
+                    <OnlineUsersList />
                     <div className="content__container">
                         <Route
                             exact path="/"

@@ -5,6 +5,8 @@ import reduxPromise from 'redux-promise'
 import {Provider} from 'react-redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
 
+import {initSocket} from './socket'
+
 import reducer from './redux/reducers'
 import Welcome from './components/Welcome'
 import App from './components/App'
@@ -16,10 +18,11 @@ let toRender
 if (location.pathname === '/welcome') {
     toRender = <Welcome />
 } else {
-    toRender = 
+    toRender = (initSocket(store),
         <Provider store={store}>
             <App />
         </Provider>
+    )
 }
 
 ReactDOM.render(

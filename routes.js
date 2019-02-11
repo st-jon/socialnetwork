@@ -5,7 +5,7 @@ const uidSafe = require('uid-safe')
 
 const app = express()
 
-const {addUser, getUserByEmail, getUserById, addProfilePic, addBio, getFriendStatus, addFriendRequest, acceptFriendRequest, cancelFriendRequest, getFriendsAndWanabee, searchFriendByName} = require('./db/db')
+const {addUser, getUserByEmail, getUserById, getUsersById, addProfilePic, addBio, getFriendStatus, addFriendRequest, acceptFriendRequest, cancelFriendRequest, getFriendsAndWanabee, searchFriendByName} = require('./db/db')
 const {hashPassword, checkPassword} = require('./utils/crypt')
 const {validateForm} = require('./utils/utils')
 const {upload} = require('./s3')
@@ -112,6 +112,13 @@ app.post('/status/update', (req, res) => {
 app.get('/getfriends', (req, res) => {
     getFriendsAndWanabee(req.session.userID)
         .then(data => res.json({data}))
+        .catch(err => console.log(err.message))
+})
+
+// GET ONLINE USERS 
+app.post('/chat', (req, res) => {
+    getUsersById(req.body.arraysOfId)
+        .then(data => res.json(data))
         .catch(err => console.log(err.message))
 })
 

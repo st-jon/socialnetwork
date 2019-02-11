@@ -1,7 +1,9 @@
 export default function(state = {}, action) {
+
     if (action.type === 'RECEIVE_FRIENDS') {
         state = {...state, friends: action.friends}
     }
+
     if (action.type === 'DELETE_FRIEND') {
         state = {
             ...state,
@@ -10,6 +12,7 @@ export default function(state = {}, action) {
             })
         }
     }
+
     if (action.type === 'ADD_FRIEND') {
         state = {
             ...state,
@@ -22,5 +25,26 @@ export default function(state = {}, action) {
             })
         }
     }
+
+    if (action.type === 'GET_ONLINE_USERS') {
+        state = {...state, onlineUsers: action.onlineUsers}
+    }
+
+    if (action.type === 'UPDATE_ONLINE_USERS') {
+        state = {
+            ...state, 
+            onlineUsers: [...state.onlineUsers, action.newOnlineUsers]
+        }
+    }
+
+    if (action.type === 'DELETE_ONLINE_USER') {
+        state = {
+            ...state,
+            onlineUsers: state.onlineUsers.filter(user => {
+                return user.id !== action.id
+            })      
+        }
+    }
+
     return state
 }

@@ -38,6 +38,16 @@ module.exports.getUserById = (id) => {
     )
 }
 
+// GET USERS BY ID
+module.exports.getUsersById = (arrayOfId) => {
+    return db.query(`
+        SELECT id, first_name, last_name, profil_pic 
+        FROM users 
+        WHERE id = ANY($1)`, 
+        [arrayOfId]
+    )
+}
+
 // ADD PROFILE_PIC
 module.exports.addProfilePic = (id, profilePic) => {
     return db.query(`

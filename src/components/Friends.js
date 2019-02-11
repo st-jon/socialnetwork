@@ -88,10 +88,7 @@ class Friends extends React.Component {
 }
 
 const mapStateToProps = function(state) {
-
-    return {
-        friends: state.friends
-    }
+    return {friends: state.friends}
 }
 
 export default connect(mapStateToProps)(Friends)
