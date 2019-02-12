@@ -46,5 +46,19 @@ export default function(state = {}, action) {
         }
     }
 
+    if (action.type === 'GET_MESSAGES') {
+        state = {
+            ...state,
+            messages: action.messages
+        }
+    }
+
+    if (action.type === 'ADD_MESSAGE') {
+        state = {
+            ...state,
+            messages: [...state.messages, action.message]
+        }
+    }
+
     return state
 }

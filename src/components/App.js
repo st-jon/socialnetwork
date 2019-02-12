@@ -2,14 +2,13 @@ import React from 'react'
 import axios from '../axios'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 
-
-import ProfilePic from './ProfilePic'
 import Uploader from './Uploader'
 import Profile from './Profile'
 import OtherProfile from './OtherProfile'
 import Friends from './Friends'
 import Header from './Header'
 import OnlineUsersList from './OnlineUsersList'
+import Chat from './Chat'
 
 export default class App extends React.Component {
     constructor() {
@@ -103,6 +102,29 @@ export default class App extends React.Component {
                                         showBio={this.showBio}
                                     />
                                     <Friends 
+                                        key={props.match.url}
+                                        match={props.match}
+                                        history={props.history} 
+                                    />
+                                </div>
+                            )}
+                        /> 
+                        <Route  
+                            path='/chatroom'
+                            render={props => (
+                                <div className="profri__container">
+                                    <Profile
+                                        name={this.state.firstName} 
+                                        last= {this.state.lastName}
+                                        uploader={this.showUploader}
+                                        picture={this.state.profilePic}
+                                        bio={this.state.bio}
+                                        showBio={this.showBio}
+                                    />
+                                    <Chat 
+                                        name={this.state.firstName} 
+                                        last= {this.state.lastName}
+                                        picture={this.state.profilePic}
                                         key={props.match.url}
                                         match={props.match}
                                         history={props.history} 

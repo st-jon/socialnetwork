@@ -47,7 +47,7 @@ export default class Header extends React.Component {
                     {this.state.menuIsVisible && 
                         <div>
                             <div onMouseLeave={this.showMenu} className="menu animated">
-                                <Link to='/chat'>
+                                <Link to='/chatroom'>
                                     <div className="menu-item link">Chat</div>
                                 </Link>
                                 <Link to='/friends'>

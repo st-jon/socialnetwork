@@ -18,7 +18,7 @@ class OnlineUsersList extends React.Component {
     }
     
     render() {
-        const { onlineUsers } = this.props
+        const {onlineUsers} = this.props
 
         if (!onlineUsers) {
             return null

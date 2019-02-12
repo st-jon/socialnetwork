@@ -84,7 +84,7 @@ a {
 
 .profri__container {
     display: flex;
-    height: 100vh;
+    /* height: 100vh; */
     width: 100vw;
 }
 
@@ -549,6 +549,7 @@ a {
     align-items: center;
     height: 60px;
     padding: 0 10px;
+    background: #3B3B3B;
     border-bottom: 1px solid rgb(88, 88, 88);
 }
 
@@ -562,6 +563,106 @@ a {
     margin-left: 30px;
 }
 
+/*  CHAT ROOM */
+
+.chat__container {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    width: 80vw;
+    height: 85vh;
+    padding-left: 5vw;
+    padding-top: 5vh;
+}
+
+.screen__container {
+    align-self: center;
+    width: 46vw;
+    height: 65vh;
+    border: 1px solid rgb(88, 88, 88);
+    padding: 15px 2vw;
+    overflow: scroll;
+}
+
+.messages__container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.message__container {
+    display: flex;
+    justify-content: flex-start;
+    border:  1px solid rgb(88, 88, 88);
+    border-radius: 5px;
+    background: rgb(88, 88, 88);
+    width: 25vw;
+    margin-top: 10px;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.yours {
+    align-items: flex-start;
+}
+
+.other {
+    align-items: flex-end;
+}
+
+.message__content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.message__name {
+    font-family: 'violence';
+    font-size: 1rem;
+    letter-spacing: .1rem;
+}
+
+.message__text {
+    margin-top: 5px;
+}
+
+.chat__messagearea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input__chat {
+    outline: none;
+    resize: none;
+    background: none;
+    width: 50vw;
+    height: 15vh;
+    color: #FFF;
+    border: 1px solid rgb(88, 88, 88);
+    background: rgb(75, 75, 75);
+}
+
+.input__chat::placeholder {
+    color: #FFF;
+}
+
+.btn__chat {
+    align-self: center;
+    margin: 10px;
+    width: 60px;
+    height: 25px;
+    background-color: rgb(185, 0, 0);
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-family: 'violence';
+    letter-spacing: .2rem;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+}
  
 /* REGISTRATION */
 

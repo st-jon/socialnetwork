@@ -131,3 +131,25 @@ module.exports.searchFriendByName = (text) => {
         [text]
     )
 }
+
+// GET LAST 10 MESSAGES
+module.exports.getMessages = () => {
+    return db.query(`
+        SELECT messages.messages, messages.id, messages.created_at, users.first_name, users.last_name, users.profil_pic
+        FROM messages
+        JOIN users
+        ON users.id = messages.sender_id
+        ORDER BY messages.id DESC
+        LIMIT 10
+    `)
+}
+
+// ADD NEW MESSAGES
+module.exports.addMessage = (id, message) => {
+    return db.query(`
+        INSERT INTO messages (sender_id, messages)
+        VALUES ($1, $2)
+        RETURNING *`,
+        [id, message]
+    )
+}

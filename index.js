@@ -5,7 +5,7 @@ const csurf = require('csurf')
 const express = require('express')
 
 const {cookieSecret} = require("./secrets.json")
-const {getUserById, getUsersById} = require('./db/db')
+const {getMessages, addMessage, getUsersById} = require('./db/db')
 const routes = require('./routes')
 
 const app = new express()
@@ -57,8 +57,8 @@ let onlineUsers = {}
 io.on('connection', (socket) => {
     console.log('server connected to socket', socket.id)
 
+    // ONLINE USERS
     onlineUsers[socket.id] = socket.request.session.userID
-
     let usersID = [... new Set(Object.values(onlineUsers))]
 
     getUsersById(usersID)
@@ -73,6 +73,30 @@ io.on('connection', (socket) => {
             })
         })
         .catch(err => console.log(err.message))
+
+    // CHAT ROOM MESSAGES
+    getMessages()
+        .then(data => {
+            socket.emit('chat messages', {
+                messages: data.rows.reverse()
+            })
+        })
+        .catch(err => console.log(err.message))
+
+    socket.on('new chat message from user', message => {
+        addMessage(socket.request.session.userID, message.message)
+            .then(data => {
+                data.rows[0]['first_name'] = message.first
+                data.rows[0]['last_name'] = message.last
+                data.rows[0]['profil_pic'] = message.picture
+                io.emit('chat message', {
+                    message: data.rows[0]
+                })
+            })
+            .catch(err => console.log(err.message))
+    })
+    
+    
 
     socket.on('disconnect', () => {
         let userToDelete =  onlineUsers[socket.id]
