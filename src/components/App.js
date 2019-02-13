@@ -9,6 +9,7 @@ import Friends from './Friends'
 import Header from './Header'
 import OnlineUsersList from './OnlineUsersList'
 import Chat from './Chat'
+import Wall from './Wall'
 
 export default class App extends React.Component {
     constructor() {
@@ -69,14 +70,21 @@ export default class App extends React.Component {
                         <Route
                             exact path="/"
                             render={() => (
-                                <Profile
-                                    name={this.state.firstName} 
-                                    last= {this.state.lastName}
-                                    uploader={this.showUploader}
-                                    picture={this.state.profilePic}
-                                    bio={this.state.bio}
-                                    showBio={this.showBio}
-                                />
+                                <div className="profri__container">
+                                    <Profile
+                                        name={this.state.firstName} 
+                                        last= {this.state.lastName}
+                                        uploader={this.showUploader}
+                                        picture={this.state.profilePic}
+                                        bio={this.state.bio}
+                                        showBio={this.showBio}
+                                    />
+                                    <Wall 
+                                        name={this.state.firstName} 
+                                        last= {this.state.lastName}
+                                        picture={this.state.profilePic} 
+                                    />
+                                </div>
                             )}
                         />
                         <Route  

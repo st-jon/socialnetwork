@@ -5,7 +5,7 @@ const csurf = require('csurf')
 const express = require('express')
 
 const {cookieSecret} = require("./secrets.json")
-const {getMessages, addMessage, getUsersById} = require('./db/db')
+const {getMessages, addMessage, getUsersById, getWallPosts} = require('./db/db')
 const routes = require('./routes')
 
 const app = new express()
@@ -57,6 +57,7 @@ let onlineUsers = {}
 io.on('connection', (socket) => {
     console.log('server connected to socket', socket.id)
 
+
     // ONLINE USERS
     onlineUsers[socket.id] = socket.request.session.userID
     let usersID = [... new Set(Object.values(onlineUsers))]
@@ -73,6 +74,7 @@ io.on('connection', (socket) => {
             })
         })
         .catch(err => console.log(err.message))
+
 
     // CHAT ROOM MESSAGES
     getMessages()
@@ -95,8 +97,17 @@ io.on('connection', (socket) => {
             })
             .catch(err => console.log(err.message))
     })
-    
-    
+
+
+    // WALL POSTS
+    getWallPosts()
+        .then(data => {
+            socket.emit('wall messages', {
+                posts: data.rows
+            })
+        })
+        .catch(err => console.log(err.message))    
+
 
     socket.on('disconnect', () => {
         let userToDelete =  onlineUsers[socket.id]

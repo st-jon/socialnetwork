@@ -5,7 +5,7 @@ const uidSafe = require('uid-safe')
 
 const app = express()
 
-const {addUser, getUserByEmail, getUserById, getUsersById, addProfilePic, addBio, getFriendStatus, addFriendRequest, acceptFriendRequest, cancelFriendRequest, getFriendsAndWanabee, searchFriendByName} = require('./db/db')
+const {addUser, getUserByEmail, getUserById, getUsersById, addProfilePic, addBio, getFriendStatus, addFriendRequest, acceptFriendRequest, cancelFriendRequest, getFriendsAndWanabee, searchFriendByName, addWallPosts, getWallPosts} = require('./db/db')
 const {hashPassword, checkPassword} = require('./utils/crypt')
 const {validateForm} = require('./utils/utils')
 const {upload} = require('./s3')
@@ -50,6 +50,21 @@ app.get('/user', (req, res) => {
 app.post('/upload', uploader.single('file'), upload, (req, res) => {
     let url = `${s3Url}${req.file.filename}` 
     addProfilePic(req.session.userID, url)
+        .then(data => res.json(data))
+        .catch(err => console.log(err.message))
+})
+
+// UPLOAD WALL WITH PICTURE
+app.post('/wallWithPicture', uploader.single('file'), upload, (req, res) => {
+    let url = `${s3Url}${req.file.filename}` 
+    addWallPosts(req.session.userID, req.body.first, req.body.last, req.body.picture, req.body.message, url)
+        .then(data => res.json(data))
+        .catch(err => console.log(err.message))
+})
+
+// UPLOAD WALL NO PICTURE
+app.post('/wallNoPicture', (req, res) => {
+    addWallPosts(req.session.userID, req.body.first, req.body.last, req.body.picture, req.body.message)
         .then(data => res.json(data))
         .catch(err => console.log(err.message))
 })

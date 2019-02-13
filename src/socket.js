@@ -1,6 +1,5 @@
 import * as io from 'socket.io-client'
-import {getOnlineUsers, UpdateOnlineUsers, deleteOnlineUser, getMessages, addMessage} from './redux/actions'
-
+import {getOnlineUsers, UpdateOnlineUsers, deleteOnlineUser, getMessages, addMessage, getWallMessages, addWallMessage} from './redux/actions'
 
 let socket
 
@@ -27,6 +26,11 @@ export function initSocket(store) {
         socket.on('chat message', message => {
             store.dispatch(addMessage(message.message))
         })
+
+        socket.on('wall messages', posts => {
+            store.dispatch(getWallMessages(posts.posts))
+        })
+
     }
     return socket
 }

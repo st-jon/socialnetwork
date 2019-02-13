@@ -66,3 +66,18 @@ export const addMessage = (message) => {
         message
     }
 }
+
+export const getWallMessages = (posts) => {
+    return {
+        type: 'GET_WALL_POSTS',
+        posts
+    }
+}
+
+export const addWallMessage = (post) => {
+    console.log(post)
+    return {
+        type: 'ADD_WALL_POST',
+        post
+    }
+}

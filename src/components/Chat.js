@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import {connect} from 'react-redux'
 import {initSocket} from '../socket'
 
@@ -54,6 +55,7 @@ class Chat extends React.Component {
                                 <div 
                                     key={message.id} 
                                     className={message['last_name']===this.props.last && message['first_name']===this.props.name ? "messages__container yours": "messages__container other" }>
+                                    <span className="message__date">{moment(message['created_at']).fromNow()}</span>
                                     <div className="message__container">
                                         <ProfilePic 
                                             picture={message['profil_pic']} 
@@ -61,7 +63,9 @@ class Chat extends React.Component {
                                             last={message['last_name']}
                                         />
                                         <div className="message__content">
-                                            <div ><span className="message__name">{message['first_name']}</span> say:</div>
+                                            <div>
+                                                <span className="message__name">{message['first_name']}</span> say: 
+                                            </div>
                                             <div className="message__text">{message.messages}</div>
                                         </div> 
                                     </div>  

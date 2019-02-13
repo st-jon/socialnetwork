@@ -60,5 +60,20 @@ export default function(state = {}, action) {
         }
     }
 
+    if (action.type === 'GET_WALL_POSTS') {
+        state = {
+            ...state,
+            posts: action.posts
+        }
+    }
+
+    if (action.type === 'ADD_WALL_POST') {
+        state.posts.unshift(action.post)
+        state = {
+            ...state,
+            posts: [...state.posts]
+        }
+    }
+
     return state
 }

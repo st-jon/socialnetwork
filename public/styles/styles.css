@@ -240,7 +240,7 @@ a {
     height: 100vh;
     width: 100vw;
     background: black;
-    opacity: .6;
+    opacity: .8;
     z-index: 800;
     background-image: url("../assets/blood_spash.svg");
     background-size: cover;
@@ -616,6 +616,13 @@ a {
     margin-left: 20px;
 }
 
+.message__date {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: .7rem;
+    color: rgb(145, 145, 145);
+}
+
 .message__name {
     font-family: 'violence';
     font-size: 1rem;
@@ -662,6 +669,147 @@ a {
     font-size: 1rem;
     color: white;
     cursor: pointer;
+}
+
+/*  WALL  */
+
+.wall__container {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 80vw;
+    height: 85vh;
+    padding-left: 5vw;
+    padding-top: 5vh;
+}
+
+.wall__messagearea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input__wall {
+    outline: none;
+    resize: none;
+    background: none;
+    width: 50vw;
+    height: 15vh;
+    color: #FFF;
+    border: 1px solid rgb(88, 88, 88);
+    background: rgb(75, 75, 75);
+}
+
+.input__wall::placeholder {
+    color: #FFF;
+}
+
+.btn__wall {
+    align-self: center;
+    margin: 10px;
+    width: 60px;
+    height: 25px;
+    background-color: rgb(185, 0, 0);
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-family: 'violence';
+    letter-spacing: .2rem;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+}
+
+
+#wall__input {
+    width: 1px;
+    visibility: hidden;
+}
+
+#wall__input__fake {
+    overflow: hidden;
+    white-space: nowrap;
+    color: #FFF;
+    cursor: pointer;
+    height: 30px;
+    width: 200px;
+    text-align: center;
+}
+
+/*  POSTS  */
+
+.posts__container {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 60vh;
+    width: 60vw;
+    overflow: scroll;
+}
+
+.post__container {
+    align-self: center;
+    background: rgb(88, 88, 88);
+    border: 1px solid rgb(88, 88, 88);
+    border-radius: 5px;
+    width: 50vw;
+    margin-top: 30px;
+}
+
+.post {
+    display: flex;
+    min-height: 20vh;
+    max-height: 60vh;
+}
+
+.userpic__container {
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+.userpic__container img {
+    height: 50px;
+    width: 50px;
+}
+
+.userpic__container .default__profilPic {
+    height: 50px;
+    width: 50px;
+    font-size: 3rem;
+}
+
+.post__content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.post__name {
+    font-family: 'violence';
+    font-size: 1rem;
+    letter-spacing: .1rem;
+}
+
+.post__text {
+    margin-top: 10px;
+    width: 35vw;
+    align-self: center;
+    text-align: center;
+}
+
+.post__date {
+    font-size: .7rem;
+    color: rgb(145, 145, 145);
+}
+
+.post__picture {
+    margin-top: 20px;
+    align-self: center;
+    max-height: auto;
+    width: 200px;
 }
  
 /* REGISTRATION */

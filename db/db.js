@@ -153,3 +153,22 @@ module.exports.addMessage = (id, message) => {
         [id, message]
     )
 }
+
+// ADD WALL MESSAGE
+module.exports.addWallPosts = (senderId, firstName, lastName, profilePic, message, picture) => {
+    return db.query(`
+        INSERT INTO wall (sender_id, first_name, last_name, profil_pic, messages, picture)
+        VALUES ($1, $2, $3, $4, $5, $6)
+        RETURNING *`, 
+        [senderId, firstName, lastName, profilePic, message, picture ]
+    )
+}
+
+// GET WALL MESSAGES
+module.exports.getWallPosts = () => {
+    return db.query(`
+        SELECT * FROM wall
+        ORDER BY id DESC
+        LIMIT 10
+    `)
+}
