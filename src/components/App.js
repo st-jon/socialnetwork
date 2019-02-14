@@ -10,6 +10,7 @@ import Header from './Header'
 import OnlineUsersList from './OnlineUsersList'
 import Chat from './Chat'
 import Wall from './Wall'
+import OtherWall from './OtherWall'
 
 export default class App extends React.Component {
     constructor() {
@@ -90,11 +91,14 @@ export default class App extends React.Component {
                         <Route  
                             path="/user/:id" 
                             render={props => (
-                                <OtherProfile
-                                    key={props.match.url}
-                                    match={props.match}
-                                    history={props.history}
-                                />
+                                <div className="profri__container">
+                                    <OtherProfile
+                                        key={props.match.url}
+                                        match={props.match}
+                                        history={props.history}
+                                    />
+                                    <OtherWall />
+                                </div>
                             )}
                         />
                         <Route  

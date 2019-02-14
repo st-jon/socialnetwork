@@ -3,9 +3,11 @@ const compression = require('compression')
 const cookieSession = require('cookie-session')
 const csurf = require('csurf')
 const express = require('express')
+const request = require('request')
+const cheerio = require('cheerio')
 
 const {cookieSecret} = require("./secrets.json")
-const {getMessages, addMessage, getUsersById, getWallPosts} = require('./db/db')
+const {getMessages, addMessage, getUsersById, getWallPosts, addWallPostsLink} = require('./db/db')
 const routes = require('./routes')
 
 const app = new express()
@@ -108,8 +110,29 @@ io.on('connection', (socket) => {
         })
         .catch(err => console.log(err.message))    
 
-
+    socket.on('new link', link => {
+        
+        request.get(link.url, (err, res, body) => {
+            if (err) {
+                console.log(err)
+            } else if (res.statusCode === 200) {
+                const $ = cheerio.load(body)
+                const title = $('meta[property="og:title"]').attr('content')
+                const picture = $('meta[property="og:image"]').attr('content')
+                const publisher = $('meta[property="og:site_name"]').attr('content')
+                const description = $('meta[property="og:description"]').attr('content')
+                addWallPostsLink(socket.request.session.userID, link.first, link.last, link.picture, title, link.url, description, publisher, picture)
+                    .then(data => {
+                        console.log(data.rows[0])
+                        io.emit('new link post',{data: data.rows[0]})
+                    })
+                    .catch(err => console.log(err.message))
+            }
+        })
+    })
+    
     socket.on('disconnect', () => {
+
         let userToDelete =  onlineUsers[socket.id]
         delete onlineUsers[socket.id]
 

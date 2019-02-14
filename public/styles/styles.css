@@ -493,6 +493,7 @@ a {
     left: 0;
     width: 302px;
     background: #3B3B3B;
+    z-index: 2000;
 }
 
 .result {
@@ -568,6 +569,7 @@ a {
 .chat__container {
     display: flex;
     justify-content: flex-end;
+    align-items: flex-start;
     flex-direction: column;
     width: 80vw;
     height: 85vh;
@@ -576,7 +578,7 @@ a {
 }
 
 .screen__container {
-    align-self: center;
+    align-self: flex-start;
     width: 46vw;
     height: 65vh;
     border: 1px solid rgb(88, 88, 88);
@@ -677,10 +679,11 @@ a {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    width: 80vw;
+    width: 70vw;
     height: 85vh;
     padding-left: 5vw;
     padding-top: 5vh;
+    overflow: scroll;
 }
 
 .wall__messagearea {
@@ -688,6 +691,8 @@ a {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 60vw;
+
 }
 
 .input__wall {
@@ -705,10 +710,14 @@ a {
     color: #FFF;
 }
 
+.input__wall:focus {
+    background: #3B3B3B;
+}
+
 .btn__wall {
     align-self: center;
     margin: 10px;
-    width: 60px;
+    width: 80px;
     height: 25px;
     background-color: rgb(185, 0, 0);
     outline: none;
@@ -721,6 +730,33 @@ a {
     cursor: pointer;
 }
 
+.btn__container {
+    display: flex;
+    justify-content: center;
+}
+
+.btn__comment {
+    align-self: center;
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+.btn__link {
+    align-self: center;
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+.btn__picture {
+    align-self: center;
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+}
 
 #wall__input {
     width: 1px;
@@ -732,20 +768,32 @@ a {
     white-space: nowrap;
     color: #FFF;
     cursor: pointer;
-    height: 30px;
+    margin-top: 15px;
+    margin-left: 10px;
+    height: 20px;
     width: 200px;
-    text-align: center;
+    border-bottom: 1px solid rgb(88, 88, 88);
+    text-align: left;
 }
 
 /*  POSTS  */
 
 .posts__container {
-    align-self: center;
     display: flex;
+    align-items: flex-start;
     flex-direction: column;
     justify-content: flex-start;
     height: 60vh;
     width: 60vw;
+}
+
+.posts__container__other {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 85vh;
+    width: 60vw;
+    margin-top: 20px;
     overflow: scroll;
 }
 
@@ -761,7 +809,6 @@ a {
 .post {
     display: flex;
     min-height: 20vh;
-    max-height: 60vh;
 }
 
 .userpic__container {
@@ -785,6 +832,8 @@ a {
     flex-direction: column;
     margin-top: 20px;
     margin-left: 20px;
+    color: #FFF;
+    text-decoration: none;
 }
 
 .post__name {
@@ -794,10 +843,21 @@ a {
 }
 
 .post__text {
-    margin-top: 10px;
+    margin: 10px 0;
     width: 35vw;
     align-self: center;
     text-align: center;
+}
+
+.post__description {
+    align-self: center;
+    width: 400px;
+    text-align: justify;
+}
+
+.post__publisher {
+    margin-top: 20px;
+    align-self: center;
 }
 
 .post__date {
@@ -809,7 +869,11 @@ a {
     margin-top: 20px;
     align-self: center;
     max-height: auto;
-    width: 200px;
+    width: 400px;
+}
+
+.post__emptymessage {
+    text-align: center;
 }
  
 /* REGISTRATION */
@@ -1008,3 +1072,15 @@ a {
       transform: translateY(5px);
     }
 } 
+
+@media only screen and (max-width: 1200px) {
+    .wall__container {
+        transform: translateX(0)
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .profile__container {
+        display: none;
+    }
+}

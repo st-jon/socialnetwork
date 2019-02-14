@@ -31,6 +31,10 @@ export function initSocket(store) {
             store.dispatch(getWallMessages(posts.posts))
         })
 
+        socket.on('new link post', post => {
+            store.dispatch(addWallMessage(post.data))
+        })
+
     }
     return socket
 }
