@@ -9,3 +9,5 @@ CREATE TABLE users(
     email VARCHAR(300) UNIQUE NOT NULL CHECK (email <> ''),
     password VARCHAR(300) NOT NULL CHECK (password <> '')
 );
+
+INSERT INTO users (first_name, last_name, email, password)

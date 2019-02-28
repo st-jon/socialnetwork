@@ -3,7 +3,7 @@ const path = require('path')
 const multer = require('multer')
 const uidSafe = require('uid-safe')
 
-const app = express()
+const app = express.Router()
 
 const {addUser, getUserByEmail, getUserById, getUsersById, addProfilePic, addBio, getFriendStatus, addFriendRequest, acceptFriendRequest, cancelFriendRequest, getFriendsAndWanabee, searchFriendByName, addWallPosts, getWallPosts} = require('./db/db')
 const {hashPassword, checkPassword} = require('./utils/crypt')

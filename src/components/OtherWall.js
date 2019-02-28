@@ -42,10 +42,12 @@ class OtherWall extends React.Component {
                                     <div className="post__name">{post['first_name']} {post['last_name']}</div>
                                     <div className="post__date">{moment(post['created_at']).fromNow()}</div>
                                 </div>
+                                <div className="post__publisher">{post.publisher}</div>
                                 {post.picture && 
                                     <img className="post__picture" src={post.picture} /> 
                                 }
                                 <div className="post__text">{post.messages}</div>
+                                <div className="post__description">{post.descriptions}</div>
                             </a> 
                         </div>    
                     </div>  
