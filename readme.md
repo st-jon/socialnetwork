@@ -45,10 +45,16 @@ Go to the root of your folder
 npm install
 ```
 
+open a new tab in your terminal 
+
+```
+node bundle.server.js
+```
+
 then to start the server
 
 ```
-node index.js
+npm start
 ```
 
 ## Built With
